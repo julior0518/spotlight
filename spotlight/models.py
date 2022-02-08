@@ -1,26 +1,23 @@
+from random import choices
 from statistics import mode
 from unicodedata import category
 from django.db import models
 
 # Create your models here.
 
-USER_TYPE = (
-    ('performer', 'performer'),
-    ('studio', 'studio')
-)
-
-ROLE_CATEGORY = (
-    ('lead', 'lead'),
-    ('extra', 'extra'),
-    ('secondary', 'secondary'),
-    ('stunt', 'stunt')
-)
 
 class User(models.Model):
-    type = USER_TYPE
+    USER_TYPE = (
+    ('performer', 'performer'),
+    ('studio', 'studio')
+    )
+    
     email = models.CharField(max_length=100)
     password = models.CharField(max_length=100)
-
+    type = models.CharField(
+        max_length = 20,
+        choices = USER_TYPE,
+        default = 'performer') 
     name = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
@@ -43,6 +40,13 @@ class Movie(models.Model):
         return self.name
 
 class Role(models.Model):
+    ROLE_CATEGORY = (
+    ('lead', 'lead'),
+    ('extra', 'extra'),
+    ('secondary', 'secondary'),
+    ('stunt', 'stunt')
+    )
+
     Movie = models.ForeignKey(
         Movie, on_delete=models.CASCADE, related_name='movies')
 
@@ -52,7 +56,10 @@ class Role(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField()
     ethenicity = models.CharField(max_length=100, blank=True)
-    category = ROLE_CATEGORY
+    category = models.CharField(
+        max_length = 40,
+        choices = ROLE_CATEGORY,
+        default = 'performer')
 
     def __str__(self):
         return self.name
