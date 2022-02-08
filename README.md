@@ -24,6 +24,8 @@ pre-production social media platform
 #### A production studion can post a highlevel descrition of the project on the platform. Users can submit video castings for the opportunity and also get to rate other people that applied for casting. This system will incentivize users to invite their friends to increase their votes bringing a lot of attention to the movie even before cast is chosen. The process can be expanded past casting into writing or music for the feature.
 
 ![spotlight plannin-8](https://user-images.githubusercontent.com/78614501/152759211-bae54588-3173-4bbf-b0bb-db7166174e2a.png)
+###### add partners role model w/ image, link, name so Movies can have partners on dropdown and you can add partner info for other movies to use.
+###### add categories to role to w/name so roles you can then search all roles available for a catefory like "lead"
 
 ### MVP
 - user accounts
