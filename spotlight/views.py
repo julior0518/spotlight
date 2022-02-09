@@ -5,10 +5,15 @@ from .forms import UserForm, MovieForm, RoleForm, ActorForm, VoteForm, CommentFo
 # Create your views here.
 from django.shortcuts import render, redirect
 from .models import User, Movie, Role, Actor, Vote, Comment
+from django.http import JsonResponse
 
 def user_list(req):
     users = User.objects.all().order_by('name')
     return render(req, 'spotlight/user_list.html', {'users': users})
+def user_detail(request, pk):
+    user = User.objects.get(id=pk)
+    data = {'id': user.id, 'email': user.email, 'password': user.password, 'type': user.type, 'name': user.name, 'lastName': user.lastname, 'phone': user.phone, 'country': user.country, 'zip': user.zip}
+    return JsonResponse(data, safe=False)
 def user_create(req):
     if req.method == 'POST':
         form = UserForm(req.POST)
@@ -36,6 +41,9 @@ def user_delete(req, pk):
 def movie_list(req):
     movies = Movie.objects.all().order_by('name')
     return render(req, 'spotlight/movie_list.html', {'movies': movies})
+def movie_details(req, pk):
+    movie = Movie.objects.get(id=pk)
+    return render(req, 'spotlight/movie_details.html', {'movie': movie})
 def movie_create(req):
     if req.method == 'POST':
         form = MovieForm(req.POST)
@@ -63,6 +71,9 @@ def movie_delete(req, pk):
 def role_list(req):
     roles = Role.objects.all().order_by('name')
     return render(req, 'spotlight/role_list.html', {'roles': roles})
+def role_details(req, pk):
+    role = Role.objects.get(id=pk)
+    return render(req, 'spotlight/role_details.html', {'role': role})
 def role_create(req):
     if req.method == 'POST':
         form = RoleForm(req.POST)
@@ -90,6 +101,9 @@ def role_delete(req, pk):
 def actor_list(req):
     actors = Actor.objects.all().order_by('name')
     return render(req, 'spotlight/actor_list.html', {'actors': actors})
+def actor_details(req, pk):
+    actor = Actor.objects.get(id=pk)
+    return render(req, 'spotlight/actor_details.html', {'actor': actor})
 def actor_create(req):
     if req.method == 'POST':
         form = ActorForm(req.POST)
@@ -117,6 +131,9 @@ def actor_delete(req, pk):
 def vote_list(req):
     votes = Vote.objects.all()
     return render(req, 'spotlight/vote_list.html', {'votes': votes})
+def vote_details(req, pk):
+    vote = Vote.objects.get(id=pk)
+    return render(req, 'spotlight/vote_details.html', {'vote': vote})
 def vote_create(req):
     if req.method == 'POST':
         form = VoteForm(req.POST)
@@ -134,6 +151,9 @@ def vote_delete(req, pk):
 def comment_list(req):
     comments = Comment.objects.all()
     return render(req, 'spotlight/comment_list.html', {'comments': comments})
+def comment_details(req, pk):
+    comment = Comment.objects.get(id=pk)
+    return render(req, 'spotlight/comment_details.html', {'comment': comment})
 def comment_create(req):
     if req.method == 'POST':
         form = CommentForm(req.POST)
