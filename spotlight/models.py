@@ -21,7 +21,7 @@ class User(models.Model):
     name = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)
-    coutnry = models.CharField(max_length=100)
+    country = models.CharField(max_length=100)
     zip = models.IntegerField()
 
     def __str__(self):
@@ -70,7 +70,7 @@ class Actor(models.Model):
         Role, on_delete=models.CASCADE, related_name='actors')
     
     name = models.CharField(max_length=100)
-    videofile= models.FileField(upload_to='videos/', null=True, verbose_name="")
+    videoFile= models.FileField(upload_to='videos/', null=True, verbose_name="")
     image = models.ImageField()
     resume = models.FileField()
 

@@ -17,7 +17,7 @@ class MovieForm(forms.ModelForm):
 class RoleForm(forms.ModelForm):
     class Meta:
         model = Role
-        Fields = ('name', 'image', 'description', 'age', 'ethnicity', 'category')
+        fields = ('name', 'image', 'description', 'age', 'ethnicity', 'category')
 
 class ActorForm(forms.ModelForm):
     class Meta:
@@ -32,4 +32,4 @@ class VoteForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('message')
+        fields = ('message',)
