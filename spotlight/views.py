@@ -10,7 +10,7 @@ from django.http import JsonResponse
 def user_list(req):
     users = User.objects.all().order_by('name')
     return render(req, 'spotlight/user_list.html', {'users': users})
-def user_detail(request, pk):
+def user_details(request, pk):
     user = User.objects.get(id=pk)
     data = {'id': user.id, 'email': user.email, 'password': user.password, 'type': user.type, 'name': user.name, 'lastName': user.lastname, 'phone': user.phone, 'country': user.country, 'zip': user.zip}
     return JsonResponse(data, safe=False)
