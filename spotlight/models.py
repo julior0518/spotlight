@@ -53,9 +53,8 @@ class Role(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField()
     description = models.CharField(max_length=1000)
-    name = models.CharField(max_length=100)
     age = models.IntegerField()
-    ethenicity = models.CharField(max_length=100, blank=True)
+    ethnicity = models.CharField(max_length=100, blank=True)
     category = models.CharField(
         max_length = 40,
         choices = ROLE_CATEGORY,

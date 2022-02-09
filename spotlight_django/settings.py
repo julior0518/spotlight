@@ -84,7 +84,8 @@ DATABASES = {
         'NAME': 'spotlight',
         'USER': 'spotlight_user',
         'PASSWORD': 'spot',
-        'HOST': 'localhost'
+        'HOST': 'localhost',
+        'DISABLE_SERVER_SIDE_CURSORS': True,
     }
 }
 
