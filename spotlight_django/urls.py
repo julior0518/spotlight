@@ -18,7 +18,14 @@ from django.urls import path
 
 from django.conf.urls import include
 
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+) 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('spotlight.urls')),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
 ]
+

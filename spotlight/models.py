@@ -1,3 +1,4 @@
+from cgitb import text
 from random import choices
 from statistics import mode
 from unicodedata import category
@@ -47,8 +48,8 @@ class Role(models.Model):
     ('stunt', 'stunt')
     )
 
-    Movie = models.ForeignKey(
-        Movie, on_delete=models.CASCADE, related_name='movies')
+    movie = models.ForeignKey(
+        Movie, on_delete=models.CASCADE, related_name='roles')
 
     name = models.CharField(max_length=100)
     image = models.ImageField()
@@ -64,9 +65,9 @@ class Role(models.Model):
         return self.name
 
 class Actor(models.Model):
-    User = models.ForeignKey(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='actors')
-    Role = models.ForeignKey(
+    role = models.ForeignKey(
         Role, on_delete=models.CASCADE, related_name='actors')
     
     name = models.CharField(max_length=100)
@@ -78,25 +79,25 @@ class Actor(models.Model):
         return self.name
 
 class Vote(models.Model):
-    User = models.ForeignKey(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='votes')
-    Actor = models.ForeignKey(
+    actor = models.ForeignKey(
         Actor, on_delete=models.CASCADE, related_name='votes')
 
     def __str__(self):
-        return self
+        return str(self.actor)
 
 class Comment(models.Model):
-    User = models.ForeignKey(
+    user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='comments')
-    Movie = models.ForeignKey(
-        Movie, on_delete=models.CASCADE, related_name='comments', blank=True)
-    Role = models.ForeignKey(
-        Role, on_delete=models.CASCADE, related_name='comments', blank=True)
-    Actor = models.ForeignKey(
-        Actor, on_delete=models.CASCADE, related_name='comments', blank=True)
+    movie = models.ForeignKey(
+        Movie, on_delete=models.CASCADE, related_name='comments', blank=True, null=True)
+    role = models.ForeignKey(
+        Role, on_delete=models.CASCADE, related_name='comments', blank=True, null=True)
+    actor = models.ForeignKey(
+        Actor, on_delete=models.CASCADE, related_name='comments', blank=True, null=True)
 
     message = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.text
+        return self.message
