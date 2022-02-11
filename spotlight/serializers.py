@@ -4,7 +4,7 @@ from .models import User, Movie, Role, Actor, Vote, Comment
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('id', 'email', 'type', 'name', 'lastName', 'phone', 'country', 'zip' )
+        fields = ('id', 'email', 'types', 'name', 'lastName', 'phone', 'country', 'zip' )
 
 class MovieSerializer(serializers.HyperlinkedModelSerializer):
     user = serializers.HyperlinkedRelatedField(
