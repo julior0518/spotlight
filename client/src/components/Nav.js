@@ -1,7 +1,15 @@
+
+import { Link } from 'react-router-dom';
+
 function Nav() {
 return (
     <div className="Nav">
-    <p>Nav</p>
+        <Link to="/" className="li">
+            Movies
+        </Link>
+        <Link to="/logInOut" className="li">
+            SignUp/LogIn
+        </Link>
     </div>
 );
 }
